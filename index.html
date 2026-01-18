@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id" class="dark-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>DecryptorCode by KeJaa</title>
+    <meta name="description" content="Tools decrypt & decode online terbaik. Support Base64, HEX, ROT13, AES, MD5 detection, dan 50+ encoding lainnya. Premium unlimited decrypt.">
+    <meta name="keywords" content="decrypt, decode, base64, hex, rot13, aes, md5, online tools, kejaa, decryptorcode">
+    <meta name="author" content="KeJaa">
+    <meta property="og:title" content="DecryptorCode by KeJaa">
+    <meta property="og:description" content="Decrypt & decode semua jenis encoding secara online.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.imghippo.com/files/YaPQ3657YE.jpg">
+    <meta property="og:url" content="https://decryptgeneratorkejaa.vercel.app">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="https://img.icons8.com/color/96/000000/lock--v1.png" type="image/x-icon">
+    
+    <!-- Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Anti-Copy Protection -->
+    <script>
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('copy', e => e.preventDefault());
+        document.addEventListener('cut', e => e.preventDefault());
+        document.addEventListener('selectstart', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) e.preventDefault();
+        });
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-content">
+            <div class="loader-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h3>Initializing DecryptorCode</h3>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Security Badge -->
+    <div class="security-badge">
+        <i class="fas fa-shield-alt"></i> PROTECTED
+    </div>
+
+    <!-- Main Container -->
+    <div class="container-fluid px-0">
+        
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="https://img.icons8.com/color/96/000000/lock--v1.png" alt="Logo" height="40">
+                    <div class="brand-text">
+                        <span class="brand-name">DecryptorCode</span>
+                        <span class="brand-by">by KeJaa</span>
+                    </div>
+                </a>
+                
+                <div class="navbar-controls">
+                    <div class="user-status" id="userStatus">
+                        <i class="fas fa-user"></i>
+                        <span id="statusText">Free User</span>
+                    </div>
+                    <a href="premium.html" class="btn-premium-nav">
+                        <i class="fas fa-crown"></i> Upgrade Premium
+                    </a>
+                    <button class="btn-menu" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title animate__animated animate__fadeInDown">
+                        <span class="text-gradient">DecryptorCode</span> by KeJaa
+                    </h1>
+                    <p class="hero-subtitle animate__animated animate__fadeInUp">
+                        Tools decrypt & decode online terlengkap. Support 50+ jenis encoding & encryption.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <h4>3x Free / Day</h4>
+                                <p>Per IP Address</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <h4>Real-time</h4>
+                                <p>Auto Detection</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>100% Secure</h4>
+                                <p>Client-side Processing</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-infinity"></i>
+                            <div>
+                                <h4>Premium</h4>
+                                <p>Unlimited Decrypt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Tools Section -->
+        <main class="tools-section">
+            <div class="container">
+                <div class="row g-4">
+                    <!-- Left: Input & Controls -->
+                    <div class="col-lg-7">
+                        <div class="card tools-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-key"></i> Decrypt/Decode Tools</h3>
+                                <div class="usage-info">
+                                    <span id="usageCount">0/3</span> uses today
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <!-- Input Area -->
+                                <div class="input-section">
+                                    <div class="input-header">
+                                        <label for="inputText"><i class="fas fa-pencil-alt"></i> Input Text/Code</label>
+                                        <button class="btn-clear" id="clearBtn">
+                                            <i class="fas fa-trash"></i> Clear
+                                        </button>
+                                    </div>
+                                    <textarea 
+                                        id="inputText" 
+                                        class="form-control" 
+                                        rows="6" 
+                                        placeholder="Paste code atau encrypted text di sini..."
+                                        spellcheck="false"
+                                    ></textarea>
+                                    <div class="input-footer">
+                                        <span id="charCount">0 characters</span>
+                                        <div class="input-actions">
+                                            <button class="btn-action btn-paste" id="pasteBtn">
+                                                <i class="fas fa-paste"></i> Paste
+                                            </button>
+                                            <button class="btn-action btn-sample" id="sampleBtn">
+                                                <i class="fas fa-vial"></i> Sample
+                                            </button>
+                                            <button class="btn-action btn-file" id="fileBtn">
+                                                <i class="fas fa-file-upload"></i> Upload File
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Algorithm Selection -->
+                                <div class="algorithm-section">
+                                    <h4><i class="fas fa-cogs"></i> Pilih Algorithm</h4>
+                                    <div class="algo-tabs">
+                                        <button class="algo-tab active" data-type="encoding">
+                                            <i class="fas fa-code"></i> Encoding
+                                        </button>
+                                        <button class="algo-tab" data-type="cipher">
+                                            <i class="fas fa-lock"></i> Cipher
+                                        </button>
+                                        <button class="algo-tab" data-type="hash">
+                                            <i class="fas fa-fingerprint"></i> Hash
+                                        </button>
+                                        <button class="algo-tab" data-type="custom">
+                                            <i class="fas fa-star"></i> Custom
+                                        </button>
+                                    </div>
+                                    
+                                    <div class="algo-options" id="encodingOptions">
+                                        <!-- Encoding options will be populated by JS -->
+                                    </div>
+                                    
+                                    <div class="algo-options d-none" id="cipherOptions">
+                                        <!-- Cipher options -->
+                                    </div>
+                                    
+                                    <div class="algo-options d-none" id="hashOptions">
+                                        <!-- Hash options -->
+                                    </div>
+                                    
+                                    <div class="algo-options d-none" id="customOptions">
+                                        <!-- Custom options -->
+                                    </div>
+                                    
+                                    <!-- Advanced Options -->
+                                    <div class="advanced-section">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="autoDetect" checked>
+                                            <label class="form-check-label" for="autoDetect">
+                                                <i class="fas fa-robot"></i> Auto-detect algorithm
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="bruteForce">
+                                            <label class="form-check-label" for="bruteForce">
+                                                <i class="fas fa-hammer"></i> Brute force (premium only)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="action-buttons">
+                                    <button class="btn-main btn-decrypt" id="decryptBtn">
+                                        <i class="fas fa-unlock"></i> Decrypt Now
+                                    </button>
+                                    <button class="btn-main btn-encode" id="encodeBtn">
+                                        <i class="fas fa-lock"></i> Encode
+                                    </button>
+                                    <button class="btn-main btn-history" id="historyBtn">
+                                        <i class="fas fa-history"></i> History
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Output & Result -->
+                    <div class="col-lg-5">
+                        <div class="card result-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-file-alt"></i> Result</h3>
+                                <div class="result-actions">
+                                    <button class="btn-icon" id="copyResult" title="Copy">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                    <button class="btn-icon" id="downloadResult" title="Download">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-icon" id="shareResult" title="Share">
+                                        <i class="fas fa-share"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body">
+                                <!-- Detection Info -->
+                                <div class="detection-info" id="detectionInfo">
+                                    <div class="detection-icon">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <div class="detection-text">
+                                        <h5>Waiting for input...</h5>
+                                        <p>Paste code atau text untuk auto-detection</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Output Area -->
+                                <div class="output-section">
+                                    <div class="output-header">
+                                        <label><i class="fas fa-file-code"></i> Decoded Text</label>
+                                        <span class="output-status" id="outputStatus">Ready</span>
+                                    </div>
+                                    <div class="output-box" id="outputBox">
+                                        <pre id="outputText">Hasil decode akan muncul di sini...</pre>
+                                    </div>
+                                    <div class="output-footer">
+                                        <div class="output-meta">
+                                            <span><i class="fas fa-clock"></i> <span id="processTime">0ms</span></span>
+                                            <span><i class="fas fa-database"></i> <span id="outputSize">0 bytes</span></span>
+                                            <span><i class="fas fa-check-circle"></i> <span id="outputStatusText">Idle</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Analysis Panel -->
+                                <div class="analysis-panel">
+                                    <h5><i class="fas fa-chart-bar"></i> Analysis</h5>
+                                    <div class="analysis-grid">
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">Entropy</span>
+                                            <div class="analysis-bar">
+                                                <div class="analysis-fill" id="entropyBar"></div>
+                                            </div>
+                                            <span class="analysis-value" id="entropyValue">0.00</span>
+                                        </div>
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">Confidence</span>
+                                            <div class="analysis-bar">
+                                                <div class="analysis-fill" id="confidenceBar"></div>
+                                            </div>
+                                            <span class="analysis-value" id="confidenceValue">0%</span>
+                                        </div>
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">Algorithm</span>
+                                            <span class="analysis-value" id="detectedAlgo">Unknown</span>
+                                        </div>
+                                        <div class="analysis-item">
+                                            <span class="analysis-label">Type</span>
+                                            <span class="analysis-value" id="detectedType">Unknown</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Premium Banner -->
+                        <div class="premium-banner">
+                            <div class="banner-content">
+                                <h4><i class="fas fa-crown"></i> Upgrade to Premium!</h4>
+                                <p>Unlock unlimited decrypt, brute force, batch processing, and priority support.</p>
+                                <a href="premium.html" class="btn-banner">
+                                    <i class="fas fa-rocket"></i> Upgrade Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- License Activation -->
+                        <div class="license-box">
+                            <h5><i class="fas fa-key"></i> License Activation</h5>
+                            <div class="license-form">
+                                <input type="text" id="licenseKey" placeholder="Enter license key" class="form-control">
+                                <button class="btn-activate" id="activateBtn">Activate</button>
+                            </div>
+                            <p class="license-note">Enter license key from your email after payment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Supported Algorithms -->
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h3><i class="fas fa-check-circle"></i> Supported Algorithms</h3>
+                            <p>50+ encoding, cipher, and hash algorithms</p>
+                        </div>
+                        
+                        <div class="algorithms-grid" id="algorithmsGrid">
+                            <!-- Algorithms will be populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-brand">
+                            <img src="https://img.icons8.com/color/96/000000/lock--v1.png" alt="Logo" height="50">
+                            <h4>DecryptorCode</h4>
+                            <p>by KeJaa</p>
+                            <p class="footer-desc">Tools decrypt & decode online terbaik sejak 2023.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-links">
+                            <h5>Links</h5>
+                            <a href="#">Home</a>
+                            <a href="premium.html">Premium</a>
+                            <a href="#">API Docs</a>
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="footer-contact">
+                            <h5>Contact</h5>
+                            <p><i class="fas fa-envelope"></i> keejagt@gmail.com</p>
+                            <p><i class="fas fa-globe"></i> decryptgeneratorkejaa.vercel.app</p>
+                            <div class="social-links">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 DecryptorCode by KeJaa. All rights reserved.</p>
+                    <p class="footer-note">
+                        <i class="fas fa-shield-alt"></i> 
+                        100% client-side processing. No data stored on servers.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
